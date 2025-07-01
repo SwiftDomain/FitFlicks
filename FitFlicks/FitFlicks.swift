@@ -10,7 +10,7 @@ import SwiftUI
 struct FitFlicks: View {
     
     @State private var flickCount = 0
-    @State private var currentFlick: Flick = Flick.currentFlick()
+    @State private var currentFlick: Flicks = Flicks.currentFlick()
     @State private var showReward = false
     @State private var badges: [String] = []
     @State private var showBadgeAlert = false
@@ -45,7 +45,7 @@ struct FitFlicks: View {
                 Button(action: {
                     flickCount += 1
                     showReward = flickCount % 5 == 0
-                    currentFlick = Flick.currentFlick()
+                    currentFlick = Flicks.currentFlick()
                     checkBadges()
                 }) {
                     Text("Start Flick")

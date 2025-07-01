@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Model 
-class FlicksModel: ObservableObject, Identifiable{
+class Flick: ObservableObject, Identifiable{
     
     private(set) var id = UUID()
     
@@ -59,17 +59,17 @@ enum Badge: Codable{
 
 
 
-struct Flick{
+struct Flicks{
     
     var title: String
     var duration: String
     
-    static func currentFlick() -> Flick {
+    static func currentFlick() -> Flicks {
         let flicks = [
-            Flick(title: "45s Plank", duration: "00:45"),
-            Flick(title: "20 Jumping Jacks", duration: "~00:30"),
-            Flick(title: "1 Min Squat Hold", duration: "01:00"),
-            Flick(title: "15 Push-Ups", duration: "~00:45")
+            Flicks(title: "45s Plank", duration: "00:45"),
+            Flicks(title: "20 Jumping Jacks", duration: "~00:30"),
+            Flicks(title: "1 Min Squat Hold", duration: "01:00"),
+            Flicks(title: "15 Push-Ups", duration: "~00:45")
         ]
         return flicks.randomElement()!
     }
