@@ -62,14 +62,14 @@ enum Badge: Codable{
 struct Flicks{
     
     var title: String
-    var duration: String
+    var duration: TimeInterval
     
     static func currentFlick() -> Flicks {
         let flicks = [
-            Flicks(title: "45s Plank", duration: "00:45"),
-            Flicks(title: "20 Jumping Jacks", duration: "~00:30"),
-            Flicks(title: "1 Min Squat Hold", duration: "01:00"),
-            Flicks(title: "15 Push-Ups", duration: "~00:45")
+            Flicks(title: "45s Plank", duration: 200),
+            Flicks(title: "20 Jumping Jacks", duration: 300),
+            Flicks(title: "1 Min Squat Hold", duration: 400),
+            Flicks(title: "15 Push-Ups", duration: 500)
         ]
         return flicks.randomElement()!
     }

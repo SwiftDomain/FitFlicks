@@ -49,7 +49,7 @@ struct FitFlicks: View {
                         Text(currentFlick.title)
                             .font(.title2)
                             .bold()
-                        Text(currentFlick.duration)
+                        Text(currentFlick.duration.description)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                         StopwatchView()
