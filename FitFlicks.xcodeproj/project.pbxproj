@@ -10,7 +10,8 @@
 		3E38AC912E14168700EE86E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E38AC8C2E14168700EE86E8 /* Assets.xcassets */; };
 		3E38AC922E14168700EE86E8 /* FitFlicks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38AC8D2E14168700EE86E8 /* FitFlicks.swift */; };
 		3E38AC932E14168700EE86E8 /* FitFlicksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38AC8E2E14168700EE86E8 /* FitFlicksApp.swift */; };
-		3E38AC942E14168700EE86E8 /* Flicks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38AC8F2E14168700EE86E8 /* Flicks.swift */; };
+		3E38AC942E14168700EE86E8 /* Flick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38AC8F2E14168700EE86E8 /* Flick.swift */; };
+		3EB8E4202E441C3300273EE7 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E41F2E441C3200273EE7 /* StopwatchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,7 +19,8 @@
 		3E38AC8C2E14168700EE86E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E38AC8D2E14168700EE86E8 /* FitFlicks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitFlicks.swift; sourceTree = "<group>"; };
 		3E38AC8E2E14168700EE86E8 /* FitFlicksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitFlicksApp.swift; sourceTree = "<group>"; };
-		3E38AC8F2E14168700EE86E8 /* Flicks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flicks.swift; sourceTree = "<group>"; };
+		3E38AC8F2E14168700EE86E8 /* Flick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flick.swift; sourceTree = "<group>"; };
+		3EB8E41F2E441C3200273EE7 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +54,9 @@
 			isa = PBXGroup;
 			children = (
 				3E38AC8C2E14168700EE86E8 /* Assets.xcassets */,
-				3E38AC8F2E14168700EE86E8 /* Flicks.swift */,
+				3E38AC8F2E14168700EE86E8 /* Flick.swift */,
 				3E38AC8D2E14168700EE86E8 /* FitFlicks.swift */,
+				3EB8E41F2E441C3200273EE7 /* StopwatchView.swift */,
 				3E38AC8E2E14168700EE86E8 /* FitFlicksApp.swift */,
 			);
 			path = FitFlicks;
@@ -133,7 +136,8 @@
 			files = (
 				3E38AC922E14168700EE86E8 /* FitFlicks.swift in Sources */,
 				3E38AC932E14168700EE86E8 /* FitFlicksApp.swift in Sources */,
-				3E38AC942E14168700EE86E8 /* Flicks.swift in Sources */,
+				3EB8E4202E441C3300273EE7 /* StopwatchView.swift in Sources */,
+				3E38AC942E14168700EE86E8 /* Flick.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

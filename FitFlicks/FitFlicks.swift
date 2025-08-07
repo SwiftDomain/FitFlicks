@@ -17,21 +17,34 @@ struct FitFlicks: View {
     @State private var themeColor = Color.green
      
     var body: some View {
+        
         NavigationView {
+            
             VStack(spacing: 20) {
-                Text("FitFlicks")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(themeColor)
                 
-                Text("Streak: \(flickCount) days")
-                    .font(.headline)
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
+                        .fill(themeColor.opacity(0.1))
+                        .frame(height:100)
+                    VStack{
+                        Text("FitFlicks")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(themeColor)
+                        
+                        
+                        Text("Streak: \(flickCount) days")
+                            .font(.headline)
+                    }
+                }
+                
+                ZStack {
+                    
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(themeColor.opacity(0.2))
-                        .frame(height: 200)
-
+                        .frame(maxHeight: .infinity)
+                    
                     VStack {
                         Text(currentFlick.title)
                             .font(.title2)
@@ -39,7 +52,9 @@ struct FitFlicks: View {
                         Text(currentFlick.duration)
                             .font(.subheadline)
                             .foregroundColor(.gray)
+                        StopwatchView()
                     }
+                    
                 }
 
                 Button(action: {
@@ -48,7 +63,7 @@ struct FitFlicks: View {
                     currentFlick = Flicks.currentFlick()
                     checkBadges()
                 }) {
-                    Text("Start Flick")
+                    Text("Quick Fit")
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
