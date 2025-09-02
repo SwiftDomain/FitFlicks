@@ -21,8 +21,9 @@ struct FitFlicksApp: App {
             fatalError("Could not initialize ModelContainer")
         }
     }
-        
+    
     var body: some Scene {
+        
         WindowGroup {
             Home()
         }

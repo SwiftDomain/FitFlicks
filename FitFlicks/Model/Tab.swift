@@ -2,7 +2,7 @@ import SwiftUI
 
 enum TabViewEnum: Identifiable, CaseIterable, View, Hashable {
             
-    case home, badges, theme, info, directions, faq
+    case home, badges, info, directions, faq
     
     var id: Self { self }
     
@@ -14,8 +14,6 @@ enum TabViewEnum: Identifiable, CaseIterable, View, Hashable {
                 .init(name: "Welcome", systemImage: "house", color: .blue)
             case .badges:
                     .init(name: "Badges", systemImage: "medal", color: .purple)
-            case .theme:
-                    .init(name: "Theme Settings", systemImage: "gearshape", color: .red)
             case .info:
                     .init(name: "About Us", systemImage: "info", color: .green)
             case .directions:
@@ -33,9 +31,6 @@ enum TabViewEnum: Identifiable, CaseIterable, View, Hashable {
                 FitFlicks()
             case .badges:
                 BadgeView(badges: ["Star", "Silver", "Bronze"])
-          case .theme:
-//               // ThemeSettingsView(themeColor: )
-            FitFlicks()
             case .info:
                 FitFlicks()
             case .directions:

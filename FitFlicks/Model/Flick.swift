@@ -14,7 +14,6 @@ class Flick: ObservableObject, Identifiable{
     private(set) var id = UUID()
     
     var straightDay: Int = 0
-    var themeColor: String = "000000"
     var count: Int = 0
     var badge: Badge = Badge.none
     
