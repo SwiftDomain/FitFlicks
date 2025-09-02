@@ -24,7 +24,7 @@ struct FitFlicksApp: App {
         
     var body: some Scene {
         WindowGroup {
-            FitFlicks()
+            Home()
         }
         .modelContainer(modelContainer)
     }

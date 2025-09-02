@@ -78,15 +78,15 @@ struct FitFlicks: View {
                         .foregroundColor(.orange)
                 }
 
-                NavigationLink(destination: BadgeView(badges: badges)) {
-                    Text("🏅 View Badges")
-                        .font(.subheadline)
-                }
-
-                NavigationLink(destination: ThemeSettingsView(themeColor: $themeColor)) {
-                    Text("🎨 Customize Theme")
-                        .font(.subheadline)
-                }
+//                NavigationLink(destination: BadgeView(badges: badges)) {
+//                    Text("🏅 View Badges")
+//                        .font(.subheadline)
+//                }
+//
+//                NavigationLink(destination: ThemeSettingsView(themeColor: $themeColor)) {
+//                    Text("🎨 Customize Theme")
+//                        .font(.subheadline)
+//                }
 
                 Spacer()
             }
