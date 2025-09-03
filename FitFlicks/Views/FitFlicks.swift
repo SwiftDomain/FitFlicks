@@ -9,12 +9,21 @@ import SwiftUI
 
 struct FitFlicks: View {
     
+    @State var flick: Flick = Flick()
+    @State private var currentFlick: FullBody
     @State private var flickCount = 0
-    @State private var currentFlick: Flicks = Flicks.currentFlick()
     @State private var showReward = false
-    @State private var badges: [String] = []
     @State private var showBadgeAlert = false
     @State private var themeColor = Color.blue
+    
+    init(flick: Flick, currentFlick: FullBody, flickCount: Int = 0, showReward: Bool = false, showBadgeAlert: Bool = false, themeColor: SwiftUICore.Color = Color.blue) {
+        self.flick = flick
+        self.currentFlick = currentFlick
+        self.flickCount = flickCount
+        self.showReward = showReward
+        self.showBadgeAlert = showBadgeAlert
+        self.themeColor = themeColor
+    }
      
     var body: some View {
         
@@ -44,11 +53,11 @@ struct FitFlicks: View {
             
                     HStack{
                         VStack {
-                            Text(currentFlick.title)
+                            Text(flick.fullBody.title)
                                 .font(.title2)
                                 .bold()
                             
-                            Text(currentFlick.duration.description)
+                            Text("\(flick.fullBody.duration)")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -84,9 +93,7 @@ struct FitFlicks: View {
                         Button(action: {
                             flickCount += 1
                             showReward = flickCount % 5 == 0
-                            currentFlick = Flicks.currentFlick()
-                            checkBadges()
-                      
+                            currentFlick = flick.fullBody                      
                         }) {
                             Text("Quick Fit")
                                 .font(.title3)
@@ -118,19 +125,6 @@ struct FitFlicks: View {
             .alert("🏅 New Badge Earned!", isPresented: $showBadgeAlert) {
                 Button("OK", role: .cancel) { }
             }
-        }
-    }
-
-    private func checkBadges() {
-        if flickCount == 1 && !badges.contains("Iron Starter") {
-            badges.append("Iron Starter")
-            showBadgeAlert = true
-        } else if flickCount == 5 && !badges.contains("Flick Five") {
-            badges.append("Flick Five")
-            showBadgeAlert = true
-        } else if flickCount == 10 && !badges.contains("Double Digit Dynamo") {
-            badges.append("Double Digit Dynamo")
-            showBadgeAlert = true
         }
     }
     
@@ -167,5 +161,5 @@ struct ThemeSettingsView: View {
 }
 
 #Preview {
-    FitFlicks()
+    FitFlicks(flick: Flick(), currentFlick: .PullUps)
 }

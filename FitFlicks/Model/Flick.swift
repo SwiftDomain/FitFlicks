@@ -8,76 +8,145 @@
 import SwiftUI
 import SwiftData
 
-@Model 
+@Model
 class Flick: ObservableObject, Identifiable{
     
     private(set) var id = UUID()
     
     var straightDay: Int = 0
     var count: Int = 0
-    var badge: Badge = Badge.none
     
     init() {}
     
-}
-
-struct Flicks{
-    
-    var title: String
-    var duration: TimeInterval
-    
-    static func currentFlick() -> Flicks {
-        let flicks = [
-            Flicks(title: "Plank", duration: 200),
-            Flicks(title: "Jumping Jacks", duration: 300),
-            Flicks(title: "Squat Hold", duration: 400),
-            Flicks(title: "Push-Ups", duration: 500)
-        ]
-        return flicks.randomElement()!
+    var fullBody: FullBody{
+        return FullBody.allCases.randomElement()!
     }
+    
+    var core: Core{
+        return Core.allCases.randomElement()!
+    }
+    
+    var cardio: Cardio{
+        return Cardio.allCases.randomElement()!
+    }
+    
 }
 
-
-enum FLickType: CaseIterable{
+enum FullBody: CaseIterable{
     
-
+    case PushUps
+    case PullUps
+    case airSquats
+    case jumpSquats
+    case pistolSquats
+    case bulgarianSplitSquats
+    case lunges
+    case walkingLunges
+    case wallSits
+    case cossackSquats
+    case goodMornings
+    case calfRaises
+    case singleLegCalfRaises
     
-}
-
-enum Badge: Codable{
-    
-    case none, iron, silver, gold, platinum, diamond, master, legend
-    
-    var descr: UIImage{
+    var title: String{
         
-        switch self{
-            
-        case .iron:
-            return UIImage(systemName: "chevron.up.2")!
-            
-        case .silver:
-            return UIImage(systemName: "chevron.up.dotted.2")!
-        case .gold:
-            return UIImage(systemName: "text.line.magnify")!
-            
-        case .platinum:
-            return UIImage(systemName: "chevron.compact.up.chevron.compact.right.chevron.compact.down.chevron.compact.left")!
-            
-        case .diamond:
-            return UIImage(systemName: "chevron.up.chevron.right.chevron.down.chevron.left")!
-            
-        case .master:
-            return UIImage(systemName: "tengesign.bank.building")!
-            
-        case .legend:
-            return UIImage(systemName: "coat")!
-            
-        case .none:
-            return UIImage(systemName: "progress.indicator")!
-            
+        switch self {
+        case .PushUps:
+            return "Push-Ups"
+        case .PullUps:
+            return "Pull-Ups"
+        case .airSquats:
+            return "Air Squats"
+        case .jumpSquats:
+            return "Jump Squats"
+        case .pistolSquats:
+            return "Pistol Squats"
+        case .bulgarianSplitSquats:
+            return "Bulgarian Split Squats"
+        case .lunges:
+            return "Lunges"
+        case .walkingLunges:
+            return "Walking Lunges"
+        case .wallSits:
+            return "Wall Sits"
+        case .cossackSquats:
+            return "Cossack Squats"
+        case .goodMornings:
+            return "Good Mornings"
+        case .calfRaises:
+            return "Calf Raises"
+        case .singleLegCalfRaises:
+            return "Single Leg Calf Raises"
         }
     }
+    
+    var duration: TimeInterval{
+        
+        switch self {
+        case .PushUps:
+            return 5000
+        case .PullUps:
+            return 5000
+        case .airSquats:
+            return 5000
+        case .jumpSquats:
+            return 5000
+        case .pistolSquats:
+            return 5000
+        case .bulgarianSplitSquats:
+            return 5000
+        case .lunges:
+            return 5000
+        case .walkingLunges:
+            return 5000
+        case .wallSits:
+            return 5000
+        case .cossackSquats:
+            return 5000
+        case .goodMornings:
+            return 5000
+        case .calfRaises:
+            return 5000
+        case .singleLegCalfRaises:
+            return 5000
+        }
+        
+    }
+    
 }
 
+enum Core: CaseIterable{
+    
+    case Crunches
+    case SitUps
+    case mountainClimbers
+    case russianTwists
+    case standardPlank
+    case sidePlanks
+    case plankJacks
+    case birdDog
+    case bearCrawl
+    
+}
+
+enum Cardio: CaseIterable{
+    
+    case Burpees
+    case starJumps
+    case highKnees
+    case buttKicks
+    case jumpingJacks
+    case lateralBounds
+    case skaterHops
+    case tuckJumps
+    case sprintInPlace
+    case wallSit
+    case hollowBodyHold
+    case supermanHold
+    case bridgeHold
+    case squatHold
+    case lungeHold
+    case LSit
+}
 
 
