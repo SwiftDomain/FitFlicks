@@ -17,6 +17,7 @@
 		3E77BBC82E66691B008AEAB8 /* RemoveMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77BBC72E66691B008AEAB8 /* RemoveMoreButton.swift */; };
 		3EB8E4202E441C3300273EE7 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E41F2E441C3200273EE7 /* StopwatchView.swift */; };
 		3EB8E4242E443B2D00273EE7 /* IconMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E4232E443B2D00273EE7 /* IconMenuView.swift */; };
+		3EC8B7242E689FED004F626B /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC8B7232E689FE8004F626B /* Debug.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		3E77BBC72E66691B008AEAB8 /* RemoveMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMoreButton.swift; sourceTree = "<group>"; };
 		3EB8E41F2E441C3200273EE7 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 		3EB8E4232E443B2D00273EE7 /* IconMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMenuView.swift; sourceTree = "<group>"; };
+		3EC8B7232E689FE8004F626B /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				3E38AC8D2E14168700EE86E8 /* FitFlicks.swift */,
 				3EB8E41F2E441C3200273EE7 /* StopwatchView.swift */,
 				3EB8E4232E443B2D00273EE7 /* IconMenuView.swift */,
+				3EC8B7232E689FE8004F626B /* Debug.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E77BBC82E66691B008AEAB8 /* RemoveMoreButton.swift in Sources */,
+				3EC8B7242E689FED004F626B /* Debug.swift in Sources */,
 				3E38AC922E14168700EE86E8 /* FitFlicks.swift in Sources */,
 				3E38AC932E14168700EE86E8 /* FitFlicksApp.swift in Sources */,
 				3EB8E4202E441C3300273EE7 /* StopwatchView.swift in Sources */,

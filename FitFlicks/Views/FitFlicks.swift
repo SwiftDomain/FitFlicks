@@ -20,35 +20,29 @@ struct FitFlicks: View {
         
         NavigationStack {
             
-            VStack(spacing: 20) {
+            VStack(spacing: 0) {
                 
                 /* Top Section */
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(themeColor.opacity(0.1))
-                        .frame(height:100)
-                    
-                    VStack{
+                    VStack(alignment: .center){
                         
                         Text("FitFlicks")
                             .font(.largeTitle)
-                            .bold()
+                            .fontWeight(.heavy)
                             .foregroundColor(themeColor)
                         
-                        Text("Streak: \(flickCount) days")
+                        Text("🔥Streak: \(flickCount) days")
                             .font(.subheadline)
                     }
-                }
+                .padding(.vertical, 32)
                 
-                /* Mid Section */
+               /* Mid Section */
                 ZStack {
                     
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(themeColor.opacity(0.1))
+                        .fill(themeColor.secondary.opacity(0.2))
                         .frame(maxHeight: .infinity)
-                    
-                    VStack {
-                        
+            
+                    HStack{
                         VStack {
                             Text(currentFlick.title)
                                 .font(.title2)
@@ -58,29 +52,58 @@ struct FitFlicks: View {
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
-
-                        StopwatchView()
-
+                        .padding(.leading, 16)
+                        
+                        Spacer()
+                        
+                        VStack{
+                            Image("Jump")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                        
                     }
+                    
                 }
+                .frame(height: 100)
+                
+                /* Mid Section */
+                ZStack(alignment: .top) {
+                     
+                     RoundedRectangle(cornerRadius: 20)
+                         .fill(themeColor.secondary.opacity(0.2))
+                         .frame(maxHeight: .infinity)
+                
+                    VStack{
+                        
+                        StopwatchView()
+                        
+                        Spacer()
+                        
+                        /* Quick Fit Button */
+                        Button(action: {
+                            flickCount += 1
+                            showReward = flickCount % 5 == 0
+                            currentFlick = Flicks.currentFlick()
+                            checkBadges()
+                      
+                        }) {
+                            Text("Quick Fit")
+                                .font(.title3)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(themeColor).opacity(1)
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.vertical, 32)
+                        
+                    }
+                 }
+                .padding(.vertical, 16)
 
-                /* Quick Fit Button */
-                Button(action: {
-                    flickCount += 1
-                    showReward = flickCount % 5 == 0
-                    currentFlick = Flicks.currentFlick()
-                    checkBadges()
-                    print(checkOSVersion())
-                }) {
-                    Text("Quick Fit")
-                        .font(.title3)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(themeColor).opacity(1)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
-                .padding(.bottom, 25)
+
+                
                 
                 if showReward {
                     Text("🎉 Bonus Unlocked! 🎉")
@@ -88,9 +111,9 @@ struct FitFlicks: View {
                         .foregroundColor(.orange)
                 }
 
-                //Spacer()
+                Spacer()
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
             .navigationBarHidden(true)
             .alert("🏅 New Badge Earned!", isPresented: $showBadgeAlert) {
                 Button("OK", role: .cancel) { }
@@ -111,20 +134,6 @@ struct FitFlicks: View {
         }
     }
     
-    func checkOSVersion() {
-        
-        let processInfo = ProcessInfo.processInfo
-        let osVersion = processInfo.operatingSystemVersion
-
-        print("Operating System Version: \(processInfo.description) \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)")
-
-        if processInfo.isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 15, minorVersion: 0, patchVersion: 0)) {
-            print("OS is at least iOS/macOS 15.0")
-        }
-    }
-
-    // Call the function in your SwiftUI view or elsewhere
-    // checkOSVersion()
 }
 
 struct BadgeView: View {

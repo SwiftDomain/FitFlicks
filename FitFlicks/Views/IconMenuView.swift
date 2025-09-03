@@ -12,22 +12,18 @@ struct IconMenuView: View {
     
     var body: some View {
         HStack(spacing: 30) {
+            
             IconButton(systemName: "play.fill", label: "Start") {
-                print("Start tapped")
             }
 
             IconButton(systemName: "arrow.counterclockwise.circle.fill", label: "Reset") {
-                print("Pause tapped")
             }
-
         }
         .padding()
         .background(.ultraThinMaterial)
         .cornerRadius(20)
         .shadow(radius: 10)
     }
-    
-    
 }
 
 struct IconButton: View {
@@ -43,7 +39,7 @@ struct IconButton: View {
                     .scaledToFit()
                     .frame(width: 30, height: 30)
                     .padding()
-                    .background(Color.blue.opacity(0.2))
+                    .background(Color.blue.secondary.opacity(0.1))
                     .clipShape(Circle())
             }
             Text(label)

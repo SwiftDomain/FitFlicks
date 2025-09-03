@@ -61,7 +61,6 @@ struct StopwatchView: View {
             .background(.ultraThinMaterial)
             .cornerRadius(20)
             .shadow(radius: 10)
-            .foregroundStyle(.white)
             
         }
     }

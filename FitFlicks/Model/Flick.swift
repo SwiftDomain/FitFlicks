@@ -21,6 +21,29 @@ class Flick: ObservableObject, Identifiable{
     
 }
 
+struct Flicks{
+    
+    var title: String
+    var duration: TimeInterval
+    
+    static func currentFlick() -> Flicks {
+        let flicks = [
+            Flicks(title: "Plank", duration: 200),
+            Flicks(title: "Jumping Jacks", duration: 300),
+            Flicks(title: "Squat Hold", duration: 400),
+            Flicks(title: "Push-Ups", duration: 500)
+        ]
+        return flicks.randomElement()!
+    }
+}
+
+
+enum FLickType: CaseIterable{
+    
+
+    
+}
+
 enum Badge: Codable{
     
     case none, iron, silver, gold, platinum, diamond, master, legend
@@ -57,20 +80,4 @@ enum Badge: Codable{
 }
 
 
-
-struct Flicks{
-    
-    var title: String
-    var duration: TimeInterval
-    
-    static func currentFlick() -> Flicks {
-        let flicks = [
-            Flicks(title: "45s Plank", duration: 200),
-            Flicks(title: "20 Jumping Jacks", duration: 300),
-            Flicks(title: "1 Min Squat Hold", duration: 400),
-            Flicks(title: "15 Push-Ups", duration: 500)
-        ]
-        return flicks.randomElement()!
-    }
-}
 
