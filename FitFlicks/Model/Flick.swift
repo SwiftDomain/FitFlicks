@@ -15,6 +15,7 @@ class Flick: ObservableObject, Identifiable{
     
     var straightDay: Int = 0
     var count: Int = 0
+    var mode: Mode = Mode.beginner
     
     init() {}
     
@@ -34,8 +35,8 @@ class Flick: ObservableObject, Identifiable{
 
 enum FullBody: CaseIterable{
     
-    case PushUps
-    case PullUps
+    case pushUps
+    case pullUps
     case airSquats
     case jumpSquats
     case pistolSquats
@@ -51,9 +52,9 @@ enum FullBody: CaseIterable{
     var title: String{
         
         switch self {
-        case .PushUps:
+        case .pushUps:
             return "Push-Ups"
-        case .PullUps:
+        case .pullUps:
             return "Pull-Ups"
         case .airSquats:
             return "Air Squats"
@@ -80,40 +81,42 @@ enum FullBody: CaseIterable{
         }
     }
     
-    var duration: TimeInterval{
+    var icon: Image{
         
         switch self {
-        case .PushUps:
-            return 5000
-        case .PullUps:
-            return 5000
+            case .pushUps:
+            return Image("Push-Ups")
+        case .pullUps:
+            return Image("Pull-Ups")
         case .airSquats:
-            return 5000
+            return Image("Squats")
         case .jumpSquats:
-            return 5000
+            return Image("Squats")
         case .pistolSquats:
-            return 5000
+            return Image("Squats")
         case .bulgarianSplitSquats:
-            return 5000
+            return Image("Squats")
         case .lunges:
-            return 5000
+            return Image("lunges")
         case .walkingLunges:
-            return 5000
+            return Image("walkinglunges")
         case .wallSits:
-            return 5000
+            return Image("wallsit")
         case .cossackSquats:
-            return 5000
+            return Image("Squats") 
         case .goodMornings:
-            return 5000
+            return Image("goodmorning")
         case .calfRaises:
-            return 5000
+            return Image("calfraise")
         case .singleLegCalfRaises:
-            return 5000
+            return Image("singlelegcalfraise")
+            
         }
         
     }
     
 }
+
 
 enum Core: CaseIterable{
     
@@ -149,4 +152,66 @@ enum Cardio: CaseIterable{
     case LSit
 }
 
+enum Mode: Codable{
+    
+    case beginner
+    case intermediate
+    case advanced
+    
+    var timeInterval: TimeInterval{
+        
+        switch self{
+            
+        case .beginner:
+            return 5000
+        case .intermediate:
+            return 7000
+        case .advanced:
+            return 9000
+            
+        }
+    }
+    
+    var descr: String{
+        
+        switch self{
+        case .beginner:
+            return "Beginner"
+        case .intermediate:
+            return "Intermediate"
+        case .advanced:
+            return "Advanced"
+        }
+    }
+}
 
+class ThemeColor {
+    
+    private var COLOR_KEY = "COLOR_KEY"
+    private let userDefaults = UserDefaults.standard
+    
+    func saveColor(color: Color) {
+        // Convert the color into RGB
+        let color = UIColor(color).cgColor
+        
+        // Save the RGB into an array
+        if let components = color.components {
+            userDefaults.set(components, forKey: COLOR_KEY)
+            
+        }
+    }
+    
+    func loadColor() -> Color{
+        // Get the RGB array
+        guard let array = userDefaults.object(forKey: COLOR_KEY) as? [CGFloat] else { return Color.blue }
+        
+        // Create a color from the RGB array
+        let color = Color(.sRGB,
+                          red: array[0],
+                          green: array[1],
+                          blue: array[2],
+                          opacity: array[3])
+        
+        return color
+    }
+}

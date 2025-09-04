@@ -20,6 +20,9 @@ struct FitFlicksApp: App {
         } catch {
             fatalError("Could not initialize ModelContainer")
         }
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
     }
     
     var body: some Scene {

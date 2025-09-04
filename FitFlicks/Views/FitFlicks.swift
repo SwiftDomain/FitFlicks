@@ -6,25 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FitFlicks: View {
     
-    @State var flick: Flick = Flick()
-    @State private var currentFlick: FullBody
-    @State private var flickCount = 0
-    @State private var showReward = false
-    @State private var showBadgeAlert = false
-    @State private var themeColor = Color.blue
+    @Environment(\.modelContext) var context
+    @Query private var flick: [Flick]
     
-    init(flick: Flick, currentFlick: FullBody, flickCount: Int = 0, showReward: Bool = false, showBadgeAlert: Bool = false, themeColor: SwiftUICore.Color = Color.blue) {
-        self.flick = flick
-        self.currentFlick = currentFlick
-        self.flickCount = flickCount
-        self.showReward = showReward
-        self.showBadgeAlert = showBadgeAlert
-        self.themeColor = themeColor
-    }
-     
+    @State private var currentFlick: FullBody = Flick().fullBody
+    @State var themeColor = ThemeColor().loadColor()
+    
+    
     var body: some View {
         
         NavigationStack {
@@ -32,32 +24,32 @@ struct FitFlicks: View {
             VStack(spacing: 0) {
                 
                 /* Top Section */
-                    VStack(alignment: .center){
-                        
-                        Text("FitFlicks")
-                            .font(.largeTitle)
-                            .fontWeight(.heavy)
-                            .foregroundColor(themeColor)
-                        
-                        Text("🔥Streak: \(flickCount) days")
-                            .font(.subheadline)
-                    }
+                VStack(alignment: .center){
+                    
+                    Text("FitFlicks")
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .foregroundColor(themeColor)
+                    
+                    Text("🔥Streak: \(flick.first!.count) days")
+                        .font(.subheadline)
+                }
                 .padding(.vertical, 32)
                 
-               /* Mid Section */
+                /* Mid Section */
                 ZStack {
                     
                     RoundedRectangle(cornerRadius: 20)
                         .fill(themeColor.secondary.opacity(0.2))
                         .frame(maxHeight: .infinity)
-            
+                    
                     HStack{
                         VStack {
-                            Text(flick.fullBody.title)
+                            Text(currentFlick.title)
                                 .font(.title2)
                                 .bold()
                             
-                            Text("\(flick.fullBody.duration)")
+                            Text("\(flick.first!.mode.descr)")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -66,7 +58,7 @@ struct FitFlicks: View {
                         Spacer()
                         
                         VStack{
-                            Image("Jump")
+                            currentFlick.icon
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                         }
@@ -78,11 +70,11 @@ struct FitFlicks: View {
                 
                 /* Mid Section */
                 ZStack(alignment: .top) {
-                     
-                     RoundedRectangle(cornerRadius: 20)
-                         .fill(themeColor.secondary.opacity(0.2))
-                         .frame(maxHeight: .infinity)
-                
+                    
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(ThemeColor().loadColor().secondary.opacity(0.2))
+                        .frame(maxHeight: .infinity)
+                    
                     VStack{
                         
                         StopwatchView()
@@ -91,9 +83,7 @@ struct FitFlicks: View {
                         
                         /* Quick Fit Button */
                         Button(action: {
-                            flickCount += 1
-                            showReward = flickCount % 5 == 0
-                            currentFlick = flick.fullBody                      
+                            currentFlick = flick.first!.fullBody
                         }) {
                             Text("Quick Fit")
                                 .font(.title3)
@@ -106,60 +96,77 @@ struct FitFlicks: View {
                         .padding(.vertical, 32)
                         
                     }
-                 }
-                .padding(.vertical, 16)
-
-
-                
-                
-                if showReward {
-                    Text("🎉 Bonus Unlocked! 🎉")
-                        .font(.headline)
-                        .foregroundColor(.orange)
                 }
-
+                .padding(.vertical, 16)
+                
                 Spacer()
             }
-            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
-            .navigationBarHidden(true)
-            .alert("🏅 New Badge Earned!", isPresented: $showBadgeAlert) {
-                Button("OK", role: .cancel) { }
+            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 16 : 64)
+            .onAppear() {
+                themeColor = ThemeColor().loadColor()
+                
+                if flick.isEmpty {
+                    let flickData = Flick()
+                    context.insert(flickData)
+                }
             }
         }
     }
     
 }
 
-struct BadgeView: View {
-    let badges: [String]
 
+struct SettingsView: View {
+    
+    @State private var color: Color = Color.black
+    var themeColor = ThemeColor()
+    
     var body: some View {
-        List {
-            ForEach(badges, id: \ .self) { badge in
-                HStack {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                    Text(badge)
+        
+        ZStack{
+            
+            Rectangle()
+                .foregroundColor(color)
+                .ignoresSafeArea()
+            
+            VStack() {
+                
+                Spacer()
+                
+                ColorPicker("Pick a color:", selection: $color)
+                    .padding(.horizontal, 64)
+                    .font(.title)
+                 
+                Spacer()
+                
+                Button(action: {
+                    themeColor.saveColor(color: color)
+                    print("Color Loaded: \(color.description)")
+
+                }) {
+                    Text("Save Color")
+                        .font(.title3)
+                        .padding()
+                        .cornerRadius(20)
                 }
+Spacer()
             }
         }
-        .navigationTitle("Your Badges")
+        .onAppear {
+            color = themeColor.loadColor()
+            print("Color Loaded: \(color.description)")
+        }
+        
     }
 }
 
-struct ThemeSettingsView: View {
-    @Binding var themeColor: Color
+//struct FitFlicksView_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        
+//        FitFlicks()
+//            .modelContainer(for: Flick.self, inMemory: true)
+//        
+//    }
+//}
 
-    var body: some View {
-        Form {
-            Section(header: Text("Select Theme Color")) {
-                ColorPicker("Pick a Color", selection: $themeColor)
-            }
-        }
-        .navigationTitle("Theme Settings")
-    }
-}
-
-#Preview {
-    FitFlicks(flick: Flick(), currentFlick: .PullUps)
-}

@@ -65,8 +65,8 @@
 		3E38AC902E14168700EE86E8 /* FitFlicks */ = {
 			isa = PBXGroup;
 			children = (
-				3E38AC8C2E14168700EE86E8 /* Assets.xcassets */,
 				3E38AC8E2E14168700EE86E8 /* FitFlicksApp.swift */,
+				3E38AC8C2E14168700EE86E8 /* Assets.xcassets */,
 				3E77BBC02E66675C008AEAB8 /* Model */,
 				3E77BBBF2E66673A008AEAB8 /* Views */,
 			);
