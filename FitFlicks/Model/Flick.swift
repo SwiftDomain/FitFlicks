@@ -163,11 +163,11 @@ enum Mode: Codable{
         switch self{
             
         case .beginner:
-            return 5000
+            return 30
         case .intermediate:
-            return 7000
+            return 60
         case .advanced:
-            return 9000
+            return 120
             
         }
     }

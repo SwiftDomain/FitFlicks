@@ -22,13 +22,13 @@ struct FitFlicksApp: App {
         }
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
+        
     }
     
     var body: some Scene {
         
         WindowGroup {
-            Home()
+            FitFlicks()
         }
         .modelContainer(modelContainer)
     }

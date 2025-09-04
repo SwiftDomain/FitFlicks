@@ -9,8 +9,13 @@
 import SwiftUI
 import AVFoundation
 import UIKit
+import SwiftData
 
 struct StopwatchView: View {
+    
+    @Environment(\.modelContext) var context
+    @Query private var flick: [Flick]
+    
     @State private var timeElapsed: TimeInterval = 0
     @State private var timerRunning = false
     @State private var timer: Timer?
@@ -35,18 +40,23 @@ struct StopwatchView: View {
             .padding()
             .onChange(of: countdownMode) {
                 if countdownMode {
-                    timeElapsed = 0
+                    //timeElapsed = 0
                 }
             }
             
             Text(timeString)
-                .font(.system(size: 50, weight: .bold, design: .monospaced))
+                .font(.system(size: 48, weight: .bold, design: .monospaced))
                 .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding()
+                .background(.ultraThinMaterial)
+                .cornerRadius(20)
+                .shadow(radius: 10)
                 .transition(.opacity)
                 .id(timeString)
                 .animation(.easeInOut(duration: 0.25), value: timeString)
 
-            HStack(spacing: 30) {
+            HStack(spacing: 32) {
                 IconButton(systemName: timerRunning ? "pause.fill" :"play.fill", label: timerRunning ? "Pause" : "Start") {
                     startStop()
                 }
@@ -54,14 +64,11 @@ struct StopwatchView: View {
                 IconButton(systemName: "arrow.counterclockwise.circle.fill", label: "Reset") {
                     reset()
                 }
-                
-            }
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding()
-            .background(.ultraThinMaterial)
-            .cornerRadius(20)
-            .shadow(radius: 10)
-            
+              }
+            .opacity(0.8)
+        }
+        .onAppear {
+          storedCountdownFrom = flick.first?.mode.timeInterval ?? 120
         }
     }
     

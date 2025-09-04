@@ -52,5 +52,7 @@ struct IconButton: View {
 }
 
 #Preview{
-IconMenuView()
+    IconButton(systemName: "play.fill", label: "Start" ){
+        
+    }
 }
